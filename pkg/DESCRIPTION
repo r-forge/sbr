@@ -6,6 +6,6 @@ Author: Kjell Konis <kjell.konis@epfl.ch>
 Maintainer: Kjell Konis <kjell.konis@epfl.ch>
 Depends: R (>= 2.8.1), lpSolveAPI (>= 5.5.0.14)
 LinkingTo: lpSolveAPI
-Description: Checks for separation before fitting a glm to binary data.
+Description: Overrides the glm function in the stats package so that a test for the existence of the maximum likelihood estimate is computed as part of the fitting procedure for binary regression models.
 License: GPL-2
 
