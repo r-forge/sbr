@@ -1,0 +1,2 @@
+export(glm)
+useDynLib(sbr, linprog, reducedLP)
