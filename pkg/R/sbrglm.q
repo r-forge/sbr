@@ -52,12 +52,14 @@ glm <- function (formula, family = gaussian, data, weights, subset,
 
   if(casefold(family$family) == "binomial" && length(unique(Y)) == 2) {
     if(separation == "test") {
-      separation <- separationTest(X, Y)
+      separation <- separator(X, Y, purpose = "test")$separation
+      #separation <- separationTest(X, Y)
       if(separation)
         stop("Separation exists among the sample points.\n\tThis model cannot be fit by maximum likelihood.")
     }
     if(separation == "find") {
-      separation <- separationDirection(X, Y)
+      separation <- separator(X, Y, purpose = "find")$beta
+      #separation <- separationDirection(X, Y)
       separating.terms <- dimnames(X)[[2]][abs(separation) > 1e-09]
       if(length(separating.terms))
         stop(paste("The following terms are causing separation among the sample points:",
