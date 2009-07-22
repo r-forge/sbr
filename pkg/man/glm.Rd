@@ -7,7 +7,7 @@ Fitting Generalized Linear Models
 }
 
 \description{
-This function overrides the \code{\link[stats]{glm}} function so that a check for the existence of the maximum likelihood estimate is computed before fitting a \sQuote{glm} to binary data.
+This function overloads the \code{\link[stats]{glm}} function so that a check for the existence of the maximum likelihood estimate is computed before fitting a \sQuote{glm} with a binary response.
 }
 
 \usage{
@@ -17,7 +17,7 @@ glm(formula, family = gaussian, data, weights, subset, na.action, start = NULL, 
 \arguments{
 The arguments are identical to the arguments of the \code{\link[stats]{glm}} function provided in the \sQuote{stats} package with the exception of
 
-\item{separation}{either \dQuote{find} or \dQuote{test}.  Both options prevent the model from being fit to binary data when the maximum likelihood estimate does not exist.  Additionally, when \code{separation = "find"}, a vector separating the sample points is output when the maximum likelihood estimate is found not to exist.}
+\item{separation}{either \dQuote{find} or \dQuote{test}.  Both options prevent the model from being fit to binary data when the maximum likelihood estimate does not exist.  Additionally, when \code{separation = "find"}, the terms separating the sample points are identified when the maximum likelihood estimate is found not to exist.}
 
 The following arguments are passed to the \code{\link[stats]{glm}} function:
 
@@ -61,6 +61,18 @@ Kjell Konis \email{kjell.konis@epfl.ch}
 }
 
 \examples{
+## A set of 4 completely separated sample points ##
+x <- c(-2, -1, 1, 2)
+y <- c(0, 0, 1, 1)
+
+\dontrun{glm(y ~ x, family = binomial)}
+
+
+## A set of 4 quasicompletely separated sample points ##
+x <- c(-2, 0, 0, 2)
+y <- c(0, 0, 1, 1)
+
+\dontrun{glm(y ~ x, family = binomial)}
 }
 
 \keyword{regression}
